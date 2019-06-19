@@ -1,0 +1,62 @@
+spring:
+  datasource:
+    username: root
+    password: wswbh
+    url: jdbc:mysql://localhost:3306/poortom?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8&useSSL=false
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    filters: stat
+    maxActive: 20
+    initialSize: 1
+    maxWait: 60000
+    minIdle: 1
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: select 'x'
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxOpenPreparedStatements: 20
+  main:
+      allow-bean-definition-overriding: true
+  jpa:
+      show-sql: true
+      hibernate:
+        #会根据映射实体类自动 创建或更新数据表
+        ddl-auto: update
+        #控制台打印sql语句
+       #指定引擎，创建表时类型为innodb类型,如果不指定则是myISAM类型，而myISAM不支持事务的
+      database-platform: org.hibernate.dialect.MySQL57Dialect
+      #指定Druid数据源
+      type: com.alibaba.druid.pool.DruidDataSource
+
+#      #数据源其他配置
+#      initialSize: 8
+#      minIdle: 5
+#      maxActive: 20
+#      maxWait: 60000
+#      timeBetweenEvictionRunsMillis: 60000
+#      minEvictableIdleTimeMillis: 300000
+#      validationQuery: SELECT 1 FROM DUAL
+#      testWhileIdle: true
+#      testOnBorrow: false
+#      testOnReturn: false
+#      poolPreparedStatements: true
+#      #   配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+#      filters: stat,wall,logback
+#      maxPoolPreparedStatementPerConnectionSize: 25
+#      useGlobalDataSourceStat: true
+#      connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+
+  redis:
+      host: localhost
+      port: 6379
+      password : 123456
+      timeout: 0
+      jedis:
+        pool:
+          max-active: 8
+          max-idle: 8
+          min-idle: 0
+          max-wait: -1ms
+
